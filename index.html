@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            background-image: url('charts/chord.png');
+        }
+    </style>
+     <!-- Import Vega, Vega-lite and Vega-embed-->  
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.17.0"></script>
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+ 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">   
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="template.css">
+
+    <title>DS4200 Website Template</title>
+</head>
+
+<body>
+ <!-- Customizing the navigation bar -->
+    <nav id="mainNavbar" style="background-color: white;" class="navbar navbar-light navbar-expand-md py-0  fixed-top">
+
+ <!-- Adding the College name to the navigation bar -->
+        <a href="https://www.khoury.northeastern.edu" class="navbar-brand"><img src=logo.png style="width:180px;height:60px"/></a>
+
+ <!-- Adding navigation tab names to the navigation bar. This is done as an unordered list. Each list element is a navigation bar element. For each, I added an <a></a> tag which will be used to direct to the appropriate section on click. You can add new items incase you want to add a new section in your webpage by simply copy pasting one of the list items. Make sure to correctly link it to the section that it corresponds to.-->       
+        <div class="collapse navbar-collapse" id="navLinks">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a href="#motivation" class="nav-link">Motivation</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#data" class="nav-link">Data</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#task" class="nav-link">Task Analysis</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#analysis" class="nav-link">Data Analysis </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#design" class="nav-link">Design Process</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#visualization" class="nav-link">Data Visualization(s)</a>
+                </li>
+               
+            </ul>
+        </div>
+    </nav>
+
+
+<!-- Section 1: Project title, group ID, group members names, and an optional project image goes here -->    
+    <section class="container-fluid px-0 py-0" style="margin-top:150px">
+        <div>
+          <h1 style="text-align:center; font-weight: bold;"> Group 7: Women Writers Project </h1>
+          <h2 style="text-align:center;"> Emily Gringorten, Sofie Cook, Grace Brown </h2>
+        </div>
+    </section>
+    
+
+<!-- Section 2: Motivation -->
+    <section id="motivation" class="container-fluid px-0" style="margin-top:50px"></section>
+        <div>
+            <h2  style="text-align:center; font-weight: bold;"> Motivation </h2> 
+            <p style="text-align: center; margin-left:auto; margin-right:auto; width:50%; text-align: justify;">The goal of this project is to uncover new insights in the data and present our findings in
+                an exciting and accessible way; WWP’s hope is to get young people interested in learning more about the
+                texts in the collection. We will be visually displaying our findings in the form of several interactive
+                and static charts that will showcase the ways in which the texts are connected to each other, along with
+                any other trends we can extrapolate from the data. We will be placing an emphasis on texts written by
+                women. We want to demonstrate how many of these texts are out there, along with allowing the viewer to
+                learn more about specific texts in the collection. We hope to find correlations between works in the
+                collection that allow people to understand them in a new way.
+            </p>
+        </div>    
+    </section>
+
+
+    <!-- Section 3: Data -->  
+    <section id="data" class="container-fluid px-0" style="margin-top:50px"></section>
+        <div>
+            <h2  style="text-align:center; font-weight: bold;"> Data </h2>
+            <p style="text-align: center; margin-left:auto; margin-right:auto; width:50%; text-align: justify;">We are primarily working with chronological data from the WWP. The data tracks writers, texts,
+                and intertextual gestures within those texts. The data is split up into multiple different json files
+                for the following categories: Barbauld, classical, drama, Dryden, female writers, Horace, novels,
+                poetry, Pope, sacred texts, and Shakespeare. Barbauld, Dryden, Horace, Pope, and Shakespeare all contain
+                data on works that reference those authors. Classical, drama, female writers, and sacred texts contain
+                data on works that reference texts of those categories.  For our project, we plan to focus on the reference
+                data included in each file to investigate trends of how the texts interact with each other. Specifically,
+                we plan to look at how references to female authors have changed over time and look for other trends
+                present in how authors reference each other. To make the data more manageable to work with, we converted
+                the json files to csv files, detailed more below when discussing our data cleaning. </p>
+            <p style="text-align: center; margin-left:auto; margin-right:auto; width:50%; text-align: justify;">
+                Each dataset has columns wwoDocId, wwoDocDesc, referencedWorks, totalGestures, gestureTypes, and
+                publicationDate.  WwwoDocID (ordinal) is the unique ID of each row. WwoDocDesc contains information on
+                author (categorical), title (categorical), and publication date (quantitative) of the text. The column
+                referencedWorks contains a list of references, each containing the id (ordinal), title (categorical),
+                year (quantitative), and author (categorical) of the referenced work plus the amount of times it was
+                referenced (quantitative). The way it was referenced is noted in the guestureTypes column. This column
+                contains a list of gesture types (categorical) and the count for that type of gesture (quantitative).
+                TotalGestures (quantitative) is the number of gestures present in the text. Finally, publicationDate
+                (quantitative) is the publication date of the text.
+            </p>
+            <p style="text-align: center; margin-left:auto; margin-right:auto; width:50%; text-align: justify;">
+                To clean the data, we first converted the json files to csv files to allow us to work with the data
+                better in python. After that, we were having trouble with the referencedWorks and gestureTypes columns,
+                as both had a variable length list of information within them, making it hard to work with those columns.
+                To fix this, we created new rows for each referenced work, keeping all of the other columns the same, so
+                that the referencedWorks column only had one item per row in it. We left the gestureTypes as is for now,
+                as the gestureTypes column does not specify which reference each gesture matches up with, so may not
+                prove useful in our analysis of referencing.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 4: Task Analysis -->  
+    <section id="task" class="container-fluid px-0" style="margin-top:50px"></section>
+        <div>
+            <h2 style="text-align:center; font-weight: bold;"> Task Analysis </h2>
+            <p style="text-align: center; margin-left:auto; margin-right:auto; width:50%; text-align: justify;">Our visualizations will be primarily to bring new life to the texts through interesting insights and
+                uncovering hidden trends in the data (exploratory visualizations). Our primary stakeholder will be the
+                members of WWP, along with their blog readers and community members. Their goal is to get more “modern”
+                readers interested in the older texts in a new way. Here are a few tasks we identified and hope to
+                answer with our visualizations.</p>
+        </div>
+        <div style="text-align: center; margin: auto;">
+            <table style="text-align:center; margin:auto;">
+               <thead>
+                   <tr>
+                       <th>Domain Task</th>
+                       <th>Analytic Task</th>
+                       <th>Search Task</th>
+                       <th>Analyze Task</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr>
+                       <td style="width: 500px;">Which time period has the most female writers?</td>
+                       <td>Cluster</td>
+                       <td>Locate</td>
+                       <td>Present</td>
+                   </tr>
+                   <tr>
+                       <td>Is there an upward trend in male authors referencing women over the years?</td>
+                       <td>Correlate</td>
+                       <td>Browse</td>
+                       <td>Discover</td>
+                   </tr>
+                   <tr>
+                       <td>Are intertextual gestures in writing increasing over time?</td>
+                       <td>Correlate</td>
+                       <td>Browse</td>
+                       <td>Discover</td>
+                   </tr>
+                   <tr>
+                       <td>Which author do women reference the most? Which book do they reference the most?</td>
+                       <td>Retrieve Value</td>
+                       <td>Locate</td>
+                       <td>Discover</td>
+                   </tr>
+               </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    <!-- Section 5: Data Analysis -->  
+    <section id="analysis" class="container-fluid px-0" style="margin-top:50px"></section>
+        <div>
+            <h2  style="text-align:center; font-weight: bold;"> Data Analysis </h2>
+            <p style="text-align: center; margin-left:auto; margin-right:auto; width:50%; text-align: justify;">
+                Here are a few findings from our initial static charts:
+            </p>
+            <ul>
+                <li style="text-align: center;  margin-left:auto; margin-right:auto; width:50%; text-align: justify;">
+                    <p>
+                        Some female authors reference themselves more than they reference others. Ex: Barbauld
+                    </p>
+                </li>
+                <li style="text-align: center; margin-left:auto; margin-right:auto; width:50%; text-align: justify;">
+                    Some of the most popular referenced works were Hamlet, the Tragedy of Macbeth, and the Tragedy of Othello
+                </li>
+                <li style="text-align: center; margin-left:auto; margin-right:auto; width:50%; text-align: justify;">
+                    John Dryden was referenced a large amount in the mid 1700s. Starting in the 1840s, Elizabeth Margaret Chandler was the most popular author to be referenced. Shakespeare is referenced less than expected.
+                </li>
+                <li style="text-align: center; margin-left:auto; margin-right:auto; width:50%; text-align: justify;">
+                    Title, quote, and citation are the three most popular gesture types by a large amount
+                </li>
+                <li style="text-align: center; margin-left:auto; margin-right:auto; width:50%; text-align: justify;">
+                    The ratio of references to female authors vs texts written by female authors overtime does not increase very steadily as hypothesized but rather is extremely volatile.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- Section 6: Design Process -->  
+<!--    <section id="design" class="container-fluid px-0" style="margin-top:50px"></section>-->
+<!--        <div>-->
+<!--            <h2  style="text-align:center; font-weight: bold;"> Design Process </h2>-->
+<!--            <p style="text-align: center; margin-left:auto; margin-right:auto; width:50%; text-align: justify;">After we had gotten down some initial tasks to answer and cleaned the data, we each set out to make a few charts on our own. When we came together during group meetings, we exchanged feedback and debugged.</p>-->
+<!--        </div>-->
+<!--    </section>-->
+
+
+<!-- Section 7: Data Visualization(s) -->  
+    <section id="visualization" class="container-fluid px-0" style="margin-top:50px">
+        <div>
+            <h2  style="text-align:center; font-weight: bold;"> Data Visualizations</h2>
+        </div>
+
+       <!-- VIS 1: linked-->
+        <p style="font-size:20px; font-weight: bold; text-align: center;">Scatter Plots: How women reference other authors</p>
+        <p class="chart-description">The first chart is a bar graph of the count of references to popular authors. This chart is useful in seeing the overall popularity of authors. As seen in the chart, Anna Laetitia Barbauld is by far the most referenced author, followed by William Shakespeare and Hannah Cowley.</p>
+        <p class="chart-description">
+        The second chart is a steam graph of the number of references to popular authors over time. As seen from the chart, John Dryden was referenced a large amount in the mid 1700s. Starting in the 1840s, Elizabeth Margaret Chandler was the most popular author to be referenced. I would have expected Shakespeare to be more popular, but his works are not as referenced as other authors.</p>
+        <p class="chart-description">
+        These two charts are linked together so that clicking on an author’s data in one highlights the corresponding data in the other. Looking at these charts in parallel is interesting to see how some popular authors are referenced gradually over time, not having thick chunks in the steam graph, whereas others have short bursts of large amounts of references. Barbauld, for example, is the most referenced author overall, but does not have a large chunk in the steam graph as she is referenced in small amounts over long periods of time. Authors like Dryden and Charlotte Smith, however, have thicker chunks in the steam graph but are not the most popular authors overall.
+        </p>
+        <div id="linking" class="center" style="text-align:center; justify-content:center; display:flex; padding-top:20px"></div>
+
+         <!-- VIS 2: bar chart-->
+        <p style="font-size:20px; font-weight: bold;text-align: center;">Count of gesture types across texts</p>
+        <p class="chart-description">This chart is simply displaying the frequency of different types of references.
+        It's clear that referencing the title of a work is the most popular reference type, with quotes being a close second. These works
+        are not typically remixed, with only one remix existing in the whole database.</p>
+        <div id="grace-bar" class="center" style="text-align:center;"></div>
+
+       <!-- VIS 3: reference and ratio line graphs-->
+        <p style="font-size:20px; font-weight: bold;text-align: center;">Line graph of number of references to women and number of texts written by women over time</p>
+        <p class="chart-description" style="font-size:20px; text-align: center;">These two charts explore the relationship between the number of references to female authors and the number of texts written by female authors in order to see if the rate of referencing female authors has increased over time. In the first chart, the orange line plots the number of texts written by female authors published on or before that year. The blue line plots the number of references to female authors in that year. The blue line is very choppy and goes up and down a lot, but there does seem to be an overall upward trend. In the second chart, the blue line plots the ratio of references to female authors vs the number of texts existing that are written by female authors. Looking at the ratio, it does not appear that there is a clear upward trend of the ratio. Certain later years do have a much larger prevalence of referencing female authors, but it is so choppy that it is hard to note an upward trend. I would have expected the referencing to female authors to be less variable and volatile.</p>
+        <div class="center" style="text-align:center; padding-top:10px">
+            <div id="line" class="center" style="text-align:center; margin: auto; float:end; margin-right:0px; padding-right:0px"></div>
+            <div id="ratio" class="center" style="text-align:center; margin: auto; float:start; margin-left:0px; padding-left:0px"></div>
+        </div>
+
+        <!-- VIS 4: my charts-->
+        <p style="font-size:20px; font-weight: bold;text-align: center; padding-top: 40px">Scatter Plots: which women are referencing iconic authors and when?</p>
+        <p class="chart-description" style="font-size:20px; text-align: center;">A series of scatter plots displaying how women
+        have been referencing authors like Shakespeare, Pope, Horace, etc over the years. Each circle represents a text written by
+        a woman, and the size of the circle relates to how many intertextual gestures they used. It is interactable, and more information can be accessed with a hover. Here, we identified that Barbauld had many references to herself; this would make sense as the published work is a collection of her other works. We can see that Shakespeare and Pope remain the most consistently referenced authors over the years. </p>
+        <div class="wrap-container center" style="width:1700px">
+            <iframe class="scatter center" style="width:1250px; height: 400px; " src="charts/shakespeare-references2.html"></iframe>
+            <div style="display:flex">
+                <iframe class="scatter center" style="width:600px; height: 400px;  margin-right:0px" src="charts/horace-references.html"></iframe>
+                <iframe class="scatter center" style="margin-left:0px" src="charts/barbauld-references.html"></iframe>
+            </div>
+            <iframe class="center" style="width:1000px; height: 400px; border:none" src="charts/pope-references.html"></iframe>
+            <iframe class="center" style="width:1100px; height: 400px; border:none" src="charts/dryden-references.html"></iframe>
+        </div>
+
+        <p style="font-size:20px; font-weight: bold;text-align: center; padding-top: 40px">Bar Graph: Which texts are women referencing the most?</p>
+        <p class="chart-description" style="font-size:20px; text-align: center;">A bar graph displaying how many women in the database have referenced each work. Shakespeare's Hamlet comes in at number one, with almost 30 women referencing it. This chart displays all the works that were referenced, and the extra data can be accessed with a scroll.</p>
+        <iframe class="center" style="width:1000px; height: 500px; border:none" src="charts/title-bar.html"></iframe>
+
+        <p style="font-size:20px; font-weight: bold;text-align: center; padding-top: 40px">Sankey Diagrams</p>
+        <p class="chart-description" style="font-size:20px; text-align: center;">A series of Sankey Diagrams displaying when women were publishing.</p>
+        <iframe class="center" style="width:1000px; height: 500px; border:none" src="charts/1600sankey.html"></iframe>
+        <iframe class="center" style="width:1000px; height: 500px; border:none" src="charts/1700sankey.html"></iframe>
+        <iframe class="center" style="width:1000px; height: 500px; border:none" src="charts/1800sankey.html"></iframe>
+<!--        <iframe class="center" style="width:1000px; height: 500px; border:none" src="charts/Horacesankey.html"></iframe>-->
+
+
+        <p style="font-size:20px; font-weight: bold;text-align: center; padding-top: 40px">Chord diagram</p>
+        <p class="chart-description" style="font-size:20px; text-align: center;">This chord diagram attempts to display which author's reference each other. Each color corresponds to an author and the nodes connect to other authors that they have referenced. TODO: Add labels to each color along with a tooltip that displays more information about them. </p>
+        <img class="center" src="charts/chord.png" style="width:500px;"/>
+
+
+    </section>
+
+    <script>
+        (function(vegaEmbed) {
+          var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-db1c10914c8e8ed203d5b9490a373a31"}, "mark": "line", "encoding": {"color": {"scale": {"scheme": "accent"}}, "x": {"field": "year", "type": "quantitative"}, "y": {"field": "ratio", "type": "quantitative"}}, "title": "Ratio of references to female authors vs total texts written by female authors over time", "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-db1c10914c8e8ed203d5b9490a373a31": [{"year": 1791, "references": 96, "texts": 228, "ratio": 0.42105263157894735}, {"year": 1826, "references": 65, "texts": 323, "ratio": 0.20123839009287925}, {"year": 1837, "references": 42, "texts": 344, "ratio": 0.12209302325581395}, {"year": 1824, "references": 39, "texts": 317, "ratio": 0.12302839116719243}, {"year": 1819, "references": 39, "texts": 304, "ratio": 0.12828947368421054}, {"year": 1774, "references": 36, "texts": 197, "ratio": 0.18274111675126903}, {"year": 1813, "references": 35, "texts": 289, "ratio": 0.12110726643598616}, {"year": 1816, "references": 24, "texts": 299, "ratio": 0.0802675585284281}, {"year": 1786, "references": 23, "texts": 210, "ratio": 0.10952380952380952}, {"year": 1810, "references": 20, "texts": 272, "ratio": 0.07352941176470588}, {"year": 1832, "references": 19, "texts": 339, "ratio": 0.05604719764011799}, {"year": 1795, "references": 18, "texts": 245, "ratio": 0.07346938775510205}, {"year": 1767, "references": 18, "texts": 189, "ratio": 0.09523809523809523}, {"year": 1705, "references": 17, "texts": 152, "ratio": 0.1118421052631579}, {"year": 1664, "references": 15, "texts": 99, "ratio": 0.15151515151515152}, {"year": 1797, "references": 14, "texts": 250, "ratio": 0.056}, {"year": 1716, "references": 13, "texts": 158, "ratio": 0.08227848101265822}, {"year": 1799, "references": 12, "texts": 256, "ratio": 0.046875}, {"year": 1798, "references": 12, "texts": 254, "ratio": 0.047244094488188976}, {"year": 1666, "references": 11, "texts": 102, "ratio": 0.10784313725490197}, {"year": 1807, "references": 11, "texts": 266, "ratio": 0.041353383458646614}, {"year": 1745, "references": 10, "texts": 177, "ratio": 0.05649717514124294}, {"year": 1793, "references": 10, "texts": 236, "ratio": 0.0423728813559322}, {"year": 1833, "references": 9, "texts": 340, "ratio": 0.026470588235294117}, {"year": 1726, "references": 9, "texts": 167, "ratio": 0.05389221556886228}, {"year": 1704, "references": 8, "texts": 151, "ratio": 0.052980132450331126}, {"year": 1700, "references": 8, "texts": 146, "ratio": 0.0547945205479452}, {"year": 1794, "references": 8, "texts": 240, "ratio": 0.03333333333333333}, {"year": 1773, "references": 8, "texts": 196, "ratio": 0.04081632653061224}, {"year": 1796, "references": 8, "texts": 247, "ratio": 0.032388663967611336}, {"year": 1841, "references": 8, "texts": 349, "ratio": 0.022922636103151862}, {"year": 1792, "references": 8, "texts": 232, "ratio": 0.034482758620689655}, {"year": 1668, "references": 8, "texts": 109, "ratio": 0.07339449541284404}, {"year": 1656, "references": 7, "texts": 84, "ratio": 0.08333333333333333}, {"year": 1825, "references": 7, "texts": 320, "ratio": 0.021875}, {"year": 1722, "references": 7, "texts": 163, "ratio": 0.04294478527607362}, {"year": 1788, "references": 7, "texts": 215, "ratio": 0.03255813953488372}, {"year": 1827, "references": 6, "texts": 325, "ratio": 0.018461538461538463}, {"year": 1725, "references": 6, "texts": 166, "ratio": 0.03614457831325301}, {"year": 1839, "references": 6, "texts": 345, "ratio": 0.017391304347826087}, {"year": 1706, "references": 6, "texts": 153, "ratio": 0.0392156862745098}, {"year": 1830, "references": 6, "texts": 330, "ratio": 0.01818181818181818}, {"year": 1710, "references": 5, "texts": 154, "ratio": 0.032467532467532464}, {"year": 1811, "references": 5, "texts": 273, "ratio": 0.018315018315018316}, {"year": 1814, "references": 5, "texts": 292, "ratio": 0.017123287671232876}, {"year": 1815, "references": 5, "texts": 298, "ratio": 0.016778523489932886}, {"year": 1822, "references": 4, "texts": 308, "ratio": 0.012987012987012988}, {"year": 1769, "references": 4, "texts": 190, "ratio": 0.021052631578947368}, {"year": 1688, "references": 4, "texts": 129, "ratio": 0.031007751937984496}, {"year": 1728, "references": 4, "texts": 170, "ratio": 0.023529411764705882}, {"year": 1685, "references": 3, "texts": 122, "ratio": 0.02459016393442623}, {"year": 1789, "references": 3, "texts": 218, "ratio": 0.013761467889908258}, {"year": 1752, "references": 3, "texts": 182, "ratio": 0.016483516483516484}, {"year": 1667, "references": 3, "texts": 109, "ratio": 0.027522935779816515}, {"year": 1651, "references": 3, "texts": 72, "ratio": 0.041666666666666664}, {"year": 1760, "references": 3, "texts": 185, "ratio": 0.016216216216216217}, {"year": 1800, "references": 3, "texts": 257, "ratio": 0.011673151750972763}, {"year": 1790, "references": 3, "texts": 223, "ratio": 0.013452914798206279}, {"year": 1834, "references": 3, "texts": 341, "ratio": 0.008797653958944282}, {"year": 1820, "references": 3, "texts": 305, "ratio": 0.009836065573770493}, {"year": 1707, "references": 3, "texts": 153, "ratio": 0.0196078431372549}, {"year": 1663, "references": 2, "texts": 99, "ratio": 0.020202020202020204}, {"year": 1756, "references": 2, "texts": 184, "ratio": 0.010869565217391304}, {"year": 1662, "references": 2, "texts": 95, "ratio": 0.021052631578947368}, {"year": 1659, "references": 2, "texts": 88, "ratio": 0.022727272727272728}, {"year": 1653, "references": 2, "texts": 78, "ratio": 0.02564102564102564}, {"year": 1812, "references": 2, "texts": 286, "ratio": 0.006993006993006993}, {"year": 1634, "references": 2, "texts": 35, "ratio": 0.05714285714285714}, {"year": 1611, "references": 2, "texts": 22, "ratio": 0.09090909090909091}, {"year": 1805, "references": 2, "texts": 262, "ratio": 0.007633587786259542}, {"year": 1690, "references": 2, "texts": 133, "ratio": 0.015037593984962405}, {"year": 1831, "references": 2, "texts": 335, "ratio": 0.005970149253731343}, {"year": 1691, "references": 2, "texts": 135, "ratio": 0.014814814814814815}, {"year": 1787, "references": 2, "texts": 212, "ratio": 0.009433962264150943}, {"year": 1713, "references": 2, "texts": 157, "ratio": 0.012738853503184714}, {"year": 1723, "references": 2, "texts": 163, "ratio": 0.012269938650306749}, {"year": 1781, "references": 2, "texts": 201, "ratio": 0.009950248756218905}, {"year": 1777, "references": 2, "texts": 199, "ratio": 0.010050251256281407}, {"year": 1750, "references": 2, "texts": 181, "ratio": 0.011049723756906077}, {"year": 1751, "references": 2, "texts": 182, "ratio": 0.01098901098901099}, {"year": 1582, "references": 2, "texts": 14, "ratio": 0.14285714285714285}, {"year": 1727, "references": 2, "texts": 170, "ratio": 0.011764705882352941}, {"year": 1829, "references": 1, "texts": 328, "ratio": 0.003048780487804878}, {"year": 1828, "references": 1, "texts": 326, "ratio": 0.003067484662576687}, {"year": 1548, "references": 1, "texts": 7, "ratio": 0.14285714285714285}, {"year": 1817, "references": 1, "texts": 299, "ratio": 0.0033444816053511705}, {"year": 1801, "references": 1, "texts": 258, "ratio": 0.003875968992248062}, {"year": 1589, "references": 1, "texts": 17, "ratio": 0.058823529411764705}, {"year": 1617, "references": 1, "texts": 26, "ratio": 0.038461538461538464}, {"year": 1630, "references": 1, "texts": 31, "ratio": 0.03225806451612903}, {"year": 1640, "references": 1, "texts": 39, "ratio": 0.02564102564102564}, {"year": 1655, "references": 1, "texts": 84, "ratio": 0.011904761904761904}, {"year": 1671, "references": 1, "texts": 110, "ratio": 0.00909090909090909}, {"year": 1673, "references": 1, "texts": 111, "ratio": 0.009009009009009009}, {"year": 1678, "references": 1, "texts": 115, "ratio": 0.008695652173913044}, {"year": 1686, "references": 1, "texts": 122, "ratio": 0.00819672131147541}, {"year": 1694, "references": 1, "texts": 139, "ratio": 0.007194244604316547}, {"year": 1696, "references": 1, "texts": 143, "ratio": 0.006993006993006993}, {"year": 1714, "references": 1, "texts": 157, "ratio": 0.006369426751592357}, {"year": 1719, "references": 1, "texts": 161, "ratio": 0.006211180124223602}, {"year": 1734, "references": 1, "texts": 171, "ratio": 0.005847953216374269}, {"year": 1780, "references": 1, "texts": 201, "ratio": 0.004975124378109453}, {"year": 1784, "references": 1, "texts": 204, "ratio": 0.004901960784313725}, {"year": 1785, "references": 1, "texts": 208, "ratio": 0.004807692307692308}]}};
+          var embedOpt = {"mode": "vega-lite"};
+
+          function showError(el, error){
+              el.innerHTML = ('<div class="error" style="color:red;">'
+                              + '<p>JavaScript Error: ' + error.message + '</p>'
+                              + "<p>This usually means there's a typo in your chart specification. "
+                              + "See the javascript console for the full traceback.</p>"
+                              + '</div>');
+              throw error;
+          }
+          const el = document.getElementById('ratio');
+          vegaEmbed("#ratio", spec, embedOpt)
+            .catch(error => showError(el, error));
+        })(vegaEmbed);
+    </script>
+
+
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "hconcat": [{"mark": "bar", "encoding": {"color": {"field": "author", "legend": null, "scale": {"scheme": "category20c"}, "type": "nominal"}, "opacity": {"condition": {"value": 1, "selection": "selector037"}, "value": 0.2}, "tooltip": [{"field": "author", "type": "nominal"}, {"field": "count", "type": "quantitative"}], "x": {"field": "author", "type": "nominal"}, "y": {"field": "count", "type": "quantitative"}}, "selection": {"selector037": {"type": "multi", "fields": ["author"]}}, "title": "Number of references to authors"}, {"mark": "area", "encoding": {"color": {"field": "author", "legend": null, "scale": {"scheme": "category20c"}, "type": "nominal"}, "opacity": {"condition": {"value": 1, "selection": "selector037"}, "value": 0.2}, "tooltip": [{"field": "author", "type": "nominal"}, {"field": "publicationDate", "type": "temporal"}, {"field": "count", "type": "quantitative"}], "x": {"field": "publicationDate", "type": "temporal"}, "y": {"axis": null, "field": "count", "stack": "center", "type": "quantitative"}}, "selection": {"selector038": {"type": "interval", "bind": "scales", "encodings": ["x", "y"]}, "selector037": {"type": "multi", "fields": ["author"]}}, "title": "References to different authors over time"}], "data": {"name": "data-21199af8918534e0f366cd5560ee9d48"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-21199af8918534e0f366cd5560ee9d48": [{"publicationDate": 1617, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1621, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1634, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1655, "author": "Cavendish, Margaret (Lucas), Duchess of Newcastle", "count": 2}, {"publicationDate": 1656, "author": "Cavendish, Margaret (Lucas), Duchess of Newcastle", "count": 16}, {"publicationDate": 1662, "author": "Cavendish, Margaret (Lucas), Duchess of Newcastle", "count": 6}, {"publicationDate": 1664, "author": "Cavendish, Margaret (Lucas), Duchess of Newcastle", "count": 27}, {"publicationDate": 1666, "author": "Cavendish, Margaret (Lucas), Duchess of Newcastle", "count": 23}, {"publicationDate": 1667, "author": "Dryden, John", "count": 2}, {"publicationDate": 1668, "author": "Cavendish, Margaret (Lucas), Duchess of Newcastle", "count": 17}, {"publicationDate": 1678, "author": "Behn, Aphra (Johnson)", "count": 3}, {"publicationDate": 1678, "author": "Dryden, John", "count": 2}, {"publicationDate": 1685, "author": "Behn, Aphra (Johnson)", "count": 6}, {"publicationDate": 1685, "author": "Dryden, John", "count": 1}, {"publicationDate": 1688, "author": "Barker, Jane", "count": 9}, {"publicationDate": 1690, "author": "Behn, Aphra (Johnson)", "count": 3}, {"publicationDate": 1694, "author": "Dryden, John", "count": 2}, {"publicationDate": 1700, "author": "Pix, Mary (Griffith)", "count": 21}, {"publicationDate": 1701, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1704, "author": "Pix, Mary (Griffith)", "count": 9}, {"publicationDate": 1705, "author": "Behn, Aphra (Johnson)", "count": 23}, {"publicationDate": 1705, "author": "Dryden, John", "count": 25}, {"publicationDate": 1705, "author": "Pix, Mary (Griffith)", "count": 9}, {"publicationDate": 1705, "author": "Shakespeare, William", "count": 10}, {"publicationDate": 1706, "author": "Dryden, John", "count": 2}, {"publicationDate": 1710, "author": "Dryden, John", "count": 1}, {"publicationDate": 1716, "author": "Barker, Jane", "count": 30}, {"publicationDate": 1722, "author": "Cowley, Hannah (Parkhouse)", "count": 3}, {"publicationDate": 1722, "author": "Dryden, John", "count": 2}, {"publicationDate": 1722, "author": "Shakespeare, William", "count": 6}, {"publicationDate": 1723, "author": "Barker, Jane", "count": 6}, {"publicationDate": 1723, "author": "Dryden, John", "count": 1}, {"publicationDate": 1726, "author": "Barker, Jane", "count": 27}, {"publicationDate": 1726, "author": "Dryden, John", "count": 2}, {"publicationDate": 1745, "author": "Dryden, John", "count": 47}, {"publicationDate": 1745, "author": "Shakespeare, William", "count": 16}, {"publicationDate": 1750, "author": "Dryden, John", "count": 5}, {"publicationDate": 1750, "author": "Shakespeare, William", "count": 4}, {"publicationDate": 1760, "author": "Dryden, John", "count": 2}, {"publicationDate": 1760, "author": "Shakespeare, William", "count": 4}, {"publicationDate": 1769, "author": "Behn, Aphra (Johnson)", "count": 2}, {"publicationDate": 1769, "author": "Shakespeare, William", "count": 4}, {"publicationDate": 1774, "author": "Barbauld, Anna Laetitia (Aikin)", "count": 6}, {"publicationDate": 1774, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1777, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1786, "author": "Cowley, Hannah (Parkhouse)", "count": 48}, {"publicationDate": 1786, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1787, "author": "Shakespeare, William", "count": 4}, {"publicationDate": 1788, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1789, "author": "Dryden, John", "count": 2}, {"publicationDate": 1789, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1790, "author": "Barbauld, Anna Laetitia (Aikin)", "count": 3}, {"publicationDate": 1790, "author": "Shakespeare, William", "count": 4}, {"publicationDate": 1791, "author": "Barbauld, Anna Laetitia (Aikin)", "count": 12}, {"publicationDate": 1791, "author": "Cowley, Hannah (Parkhouse)", "count": 26}, {"publicationDate": 1791, "author": "Shakespeare, William", "count": 4}, {"publicationDate": 1791, "author": "Smith, Charlotte (Turner)", "count": 8}, {"publicationDate": 1792, "author": "Shakespeare, William", "count": 28}, {"publicationDate": 1792, "author": "Smith, Charlotte (Turner)", "count": 3}, {"publicationDate": 1793, "author": "Shakespeare, William", "count": 20}, {"publicationDate": 1793, "author": "Smith, Charlotte (Turner)", "count": 22}, {"publicationDate": 1794, "author": "Barbauld, Anna Laetitia (Aikin)", "count": 3}, {"publicationDate": 1794, "author": "Shakespeare, William", "count": 6}, {"publicationDate": 1795, "author": "Dryden, John", "count": 1}, {"publicationDate": 1795, "author": "Edgeworth, Maria", "count": 24}, {"publicationDate": 1795, "author": "Shakespeare, William", "count": 10}, {"publicationDate": 1796, "author": "Barbauld, Anna Laetitia (Aikin)", "count": 3}, {"publicationDate": 1796, "author": "Dryden, John", "count": 1}, {"publicationDate": 1796, "author": "Robinson, Mary (Darby)", "count": 2}, {"publicationDate": 1796, "author": "Shakespeare, William", "count": 10}, {"publicationDate": 1796, "author": "Smith, Charlotte (Turner)", "count": 5}, {"publicationDate": 1797, "author": "Shakespeare, William", "count": 22}, {"publicationDate": 1797, "author": "Smith, Charlotte (Turner)", "count": 34}, {"publicationDate": 1798, "author": "Cowley, Hannah (Parkhouse)", "count": 3}, {"publicationDate": 1798, "author": "Shakespeare, William", "count": 12}, {"publicationDate": 1799, "author": "Shakespeare, William", "count": 8}, {"publicationDate": 1800, "author": "Edgeworth, Maria", "count": 1}, {"publicationDate": 1800, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1800, "author": "Smith, Charlotte (Turner)", "count": 3}, {"publicationDate": 1801, "author": "Shakespeare, William", "count": 10}, {"publicationDate": 1805, "author": "Shakespeare, William", "count": 6}, {"publicationDate": 1805, "author": "Smith, Charlotte (Turner)", "count": 3}, {"publicationDate": 1807, "author": "Dryden, John", "count": 2}, {"publicationDate": 1807, "author": "Shakespeare, William", "count": 19}, {"publicationDate": 1807, "author": "Smith, Charlotte (Turner)", "count": 14}, {"publicationDate": 1810, "author": "Dryden, John", "count": 3}, {"publicationDate": 1810, "author": "Edgeworth, Maria", "count": 1}, {"publicationDate": 1810, "author": "Robinson, Mary (Darby)", "count": 7}, {"publicationDate": 1810, "author": "Shakespeare, William", "count": 14}, {"publicationDate": 1811, "author": "Shakespeare, William", "count": 8}, {"publicationDate": 1813, "author": "Barker, Jane", "count": 3}, {"publicationDate": 1813, "author": "Cowley, Hannah (Parkhouse)", "count": 65}, {"publicationDate": 1813, "author": "Shakespeare, William", "count": 8}, {"publicationDate": 1814, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1815, "author": "Edgeworth, Maria", "count": 2}, {"publicationDate": 1815, "author": "Shakespeare, William", "count": 4}, {"publicationDate": 1816, "author": "Shakespeare, William", "count": 12}, {"publicationDate": 1817, "author": "Shakespeare, William", "count": 4}, {"publicationDate": 1819, "author": "Barbauld, Anna Laetitia (Aikin)", "count": 3}, {"publicationDate": 1819, "author": "Clark, Emily Frederick", "count": 24}, {"publicationDate": 1819, "author": "Dryden, John", "count": 1}, {"publicationDate": 1819, "author": "Robinson, Mary (Darby)", "count": 7}, {"publicationDate": 1819, "author": "Shakespeare, William", "count": 14}, {"publicationDate": 1819, "author": "Smith, Charlotte (Turner)", "count": 6}, {"publicationDate": 1820, "author": "Shakespeare, William", "count": 4}, {"publicationDate": 1822, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1824, "author": "Cowley, Hannah (Parkhouse)", "count": 2}, {"publicationDate": 1824, "author": "Dryden, John", "count": 1}, {"publicationDate": 1824, "author": "Robinson, Mary (Darby)", "count": 38}, {"publicationDate": 1824, "author": "Shakespeare, William", "count": 86}, {"publicationDate": 1825, "author": "Dryden, John", "count": 2}, {"publicationDate": 1825, "author": "Shakespeare, William", "count": 4}, {"publicationDate": 1826, "author": "Barbauld, Anna Laetitia (Aikin)", "count": 164}, {"publicationDate": 1826, "author": "Shakespeare, William", "count": 22}, {"publicationDate": 1827, "author": "Dryden, John", "count": 1}, {"publicationDate": 1827, "author": "Shakespeare, William", "count": 20}, {"publicationDate": 1830, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1832, "author": "Shakespeare, William", "count": 2}, {"publicationDate": 1832, "author": "Tuttle, Sarah", "count": 24}, {"publicationDate": 1833, "author": "Shakespeare, William", "count": 18}, {"publicationDate": 1837, "author": "Edgeworth, Maria", "count": 2}, {"publicationDate": 1837, "author": "Shakespeare, William", "count": 6}, {"publicationDate": 1839, "author": "Dryden, John", "count": 1}, {"publicationDate": 1839, "author": "Shakespeare, William", "count": 14}, {"publicationDate": 1841, "author": "Barbauld, Anna Laetitia (Aikin)", "count": 3}, {"publicationDate": 1841, "author": "Shakespeare, William", "count": 14}, {"publicationDate": 1845, "author": "Chandler, Elizabeth Margaret", "count": 30}, {"publicationDate": 1845, "author": "Shakespeare, William", "count": 2}, {"publicationDate": "1664", "author": "Cavendish, Margaret (Lucas), Duchess of Newcastle", "count": 3}, {"publicationDate": "1666", "author": "Cavendish, Margaret (Lucas), Duchess of Newcastle", "count": 1}, {"publicationDate": "1685", "author": "Behn, Aphra (Johnson)", "count": 2}, {"publicationDate": "1685", "author": "Dryden, John", "count": 1}, {"publicationDate": "1688", "author": "Barker, Jane", "count": 3}, {"publicationDate": "1694", "author": "Dryden, John", "count": 1}, {"publicationDate": "1705", "author": "Dryden, John", "count": 1}, {"publicationDate": "1722", "author": "Cowley, Hannah (Parkhouse)", "count": 1}, {"publicationDate": "1745", "author": "Dryden, John", "count": 14}, {"publicationDate": "1760", "author": "Dryden, John", "count": 1}, {"publicationDate": "1769", "author": "Behn, Aphra (Johnson)", "count": 1}, {"publicationDate": "1774", "author": "Barbauld, Anna Laetitia (Aikin)", "count": 1}, {"publicationDate": "1786", "author": "Cowley, Hannah (Parkhouse)", "count": 3}, {"publicationDate": "1791", "author": "Barbauld, Anna Laetitia (Aikin)", "count": 1}, {"publicationDate": "1791", "author": "Cowley, Hannah (Parkhouse)", "count": 1}, {"publicationDate": "1791", "author": "Smith, Charlotte (Turner)", "count": 1}, {"publicationDate": "1793", "author": "Smith, Charlotte (Turner)", "count": 2}, {"publicationDate": "1796", "author": "Barbauld, Anna Laetitia (Aikin)", "count": 1}, {"publicationDate": "1796", "author": "Dryden, John", "count": 1}, {"publicationDate": "1796", "author": "Robinson, Mary (Darby)", "count": 1}, {"publicationDate": "1796", "author": "Smith, Charlotte (Turner)", "count": 1}, {"publicationDate": "1797", "author": "Smith, Charlotte (Turner)", "count": 5}, {"publicationDate": "1807", "author": "Dryden, John", "count": 2}, {"publicationDate": "1807", "author": "Smith, Charlotte (Turner)", "count": 6}, {"publicationDate": "1810", "author": "Dryden, John", "count": 1}, {"publicationDate": "1810", "author": "Robinson, Mary (Darby)", "count": 2}, {"publicationDate": "1813", "author": "Cowley, Hannah (Parkhouse)", "count": 11}, {"publicationDate": "1819", "author": "Barbauld, Anna Laetitia (Aikin)", "count": 1}, {"publicationDate": "1819", "author": "Clark, Emily Frederick", "count": 3}, {"publicationDate": "1819", "author": "Dryden, John", "count": 1}, {"publicationDate": "1819", "author": "Robinson, Mary (Darby)", "count": 2}, {"publicationDate": "1819", "author": "Smith, Charlotte (Turner)", "count": 3}, {"publicationDate": "1824", "author": "Cowley, Hannah (Parkhouse)", "count": 1}, {"publicationDate": "1824", "author": "Dryden, John", "count": 1}, {"publicationDate": "1824", "author": "Robinson, Mary (Darby)", "count": 5}, {"publicationDate": "1826", "author": "Barbauld, Anna Laetitia (Aikin)", "count": 18}, {"publicationDate": "1827", "author": "Dryden, John", "count": 1}, {"publicationDate": "1839", "author": "Dryden, John", "count": 1}, {"publicationDate": "1845", "author": "Chandler, Elizabeth Margaret", "count": 14}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('linking');
+      vegaEmbed("#linking", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+  </script>
+
+  <script>
+
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-b78ab0d334c55d76fd3ae45e59d9f0b5"}, "mark": "bar", "encoding": {"color": {"field": "gesture", "legend": null, "scale": {"scheme": "category20c"}, "type": "nominal"}, "tooltip": [{"field": "gesture", "type": "nominal"}, {"field": "count", "type": "quantitative"}], "x": {"field": "gesture", "type": "nominal"}, "y": {"field": "count", "type": "quantitative"}}, "title": "Count of Gesture Type Across Texts", "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-b78ab0d334c55d76fd3ae45e59d9f0b5": [{"gesture": "title", "count": 234}, {"gesture": "quote", "count": 212}, {"gesture": "citation", "count": 114}, {"gesture": "advertisement", "count": 30}, {"gesture": "adaptation", "count": 25}, {"gesture": "remix", "count": 1}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('grace-bar');
+      vegaEmbed("#grace-bar", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+    </script>
+
+  <script>
+        (function(vegaEmbed) {
+          var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-ad67cc11ae9b4aefd9008f01290a7b42"}, "mark": "line", "encoding": {"color": {"field": "variable", "scale": {"scheme": "accent"}, "type": "nominal"}, "x": {"field": "year", "type": "quantitative"}, "y": {"field": "value", "type": "quantitative"}}, "title": "Number of references to women and number of texts written by women over time", "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-ad67cc11ae9b4aefd9008f01290a7b42": [{"year": 1791, "variable": "references", "value": 96}, {"year": 1826, "variable": "references", "value": 65}, {"year": 1837, "variable": "references", "value": 42}, {"year": 1824, "variable": "references", "value": 39}, {"year": 1819, "variable": "references", "value": 39}, {"year": 1774, "variable": "references", "value": 36}, {"year": 1813, "variable": "references", "value": 35}, {"year": 1816, "variable": "references", "value": 24}, {"year": 1786, "variable": "references", "value": 23}, {"year": 1810, "variable": "references", "value": 20}, {"year": 1832, "variable": "references", "value": 19}, {"year": 1795, "variable": "references", "value": 18}, {"year": 1767, "variable": "references", "value": 18}, {"year": 1705, "variable": "references", "value": 17}, {"year": 1664, "variable": "references", "value": 15}, {"year": 1797, "variable": "references", "value": 14}, {"year": 1716, "variable": "references", "value": 13}, {"year": 1799, "variable": "references", "value": 12}, {"year": 1798, "variable": "references", "value": 12}, {"year": 1666, "variable": "references", "value": 11}, {"year": 1807, "variable": "references", "value": 11}, {"year": 1745, "variable": "references", "value": 10}, {"year": 1793, "variable": "references", "value": 10}, {"year": 1833, "variable": "references", "value": 9}, {"year": 1726, "variable": "references", "value": 9}, {"year": 1704, "variable": "references", "value": 8}, {"year": 1700, "variable": "references", "value": 8}, {"year": 1794, "variable": "references", "value": 8}, {"year": 1773, "variable": "references", "value": 8}, {"year": 1796, "variable": "references", "value": 8}, {"year": 1841, "variable": "references", "value": 8}, {"year": 1792, "variable": "references", "value": 8}, {"year": 1668, "variable": "references", "value": 8}, {"year": 1656, "variable": "references", "value": 7}, {"year": 1825, "variable": "references", "value": 7}, {"year": 1722, "variable": "references", "value": 7}, {"year": 1788, "variable": "references", "value": 7}, {"year": 1827, "variable": "references", "value": 6}, {"year": 1725, "variable": "references", "value": 6}, {"year": 1839, "variable": "references", "value": 6}, {"year": 1706, "variable": "references", "value": 6}, {"year": 1830, "variable": "references", "value": 6}, {"year": 1710, "variable": "references", "value": 5}, {"year": 1811, "variable": "references", "value": 5}, {"year": 1814, "variable": "references", "value": 5}, {"year": 1815, "variable": "references", "value": 5}, {"year": 1822, "variable": "references", "value": 4}, {"year": 1769, "variable": "references", "value": 4}, {"year": 1688, "variable": "references", "value": 4}, {"year": 1728, "variable": "references", "value": 4}, {"year": 1685, "variable": "references", "value": 3}, {"year": 1789, "variable": "references", "value": 3}, {"year": 1752, "variable": "references", "value": 3}, {"year": 1667, "variable": "references", "value": 3}, {"year": 1651, "variable": "references", "value": 3}, {"year": 1760, "variable": "references", "value": 3}, {"year": 1800, "variable": "references", "value": 3}, {"year": 1790, "variable": "references", "value": 3}, {"year": 1834, "variable": "references", "value": 3}, {"year": 1820, "variable": "references", "value": 3}, {"year": 1707, "variable": "references", "value": 3}, {"year": 1663, "variable": "references", "value": 2}, {"year": 1756, "variable": "references", "value": 2}, {"year": 1662, "variable": "references", "value": 2}, {"year": 1659, "variable": "references", "value": 2}, {"year": 1653, "variable": "references", "value": 2}, {"year": 1812, "variable": "references", "value": 2}, {"year": 1634, "variable": "references", "value": 2}, {"year": 1611, "variable": "references", "value": 2}, {"year": 1805, "variable": "references", "value": 2}, {"year": 1690, "variable": "references", "value": 2}, {"year": 1831, "variable": "references", "value": 2}, {"year": 1691, "variable": "references", "value": 2}, {"year": 1787, "variable": "references", "value": 2}, {"year": 1713, "variable": "references", "value": 2}, {"year": 1723, "variable": "references", "value": 2}, {"year": 1781, "variable": "references", "value": 2}, {"year": 1777, "variable": "references", "value": 2}, {"year": 1750, "variable": "references", "value": 2}, {"year": 1751, "variable": "references", "value": 2}, {"year": 1582, "variable": "references", "value": 2}, {"year": 1727, "variable": "references", "value": 2}, {"year": 1829, "variable": "references", "value": 1}, {"year": 1828, "variable": "references", "value": 1}, {"year": 1548, "variable": "references", "value": 1}, {"year": 1817, "variable": "references", "value": 1}, {"year": 1801, "variable": "references", "value": 1}, {"year": 1589, "variable": "references", "value": 1}, {"year": 1617, "variable": "references", "value": 1}, {"year": 1630, "variable": "references", "value": 1}, {"year": 1640, "variable": "references", "value": 1}, {"year": 1655, "variable": "references", "value": 1}, {"year": 1671, "variable": "references", "value": 1}, {"year": 1673, "variable": "references", "value": 1}, {"year": 1678, "variable": "references", "value": 1}, {"year": 1686, "variable": "references", "value": 1}, {"year": 1694, "variable": "references", "value": 1}, {"year": 1696, "variable": "references", "value": 1}, {"year": 1714, "variable": "references", "value": 1}, {"year": 1719, "variable": "references", "value": 1}, {"year": 1734, "variable": "references", "value": 1}, {"year": 1780, "variable": "references", "value": 1}, {"year": 1784, "variable": "references", "value": 1}, {"year": 1785, "variable": "references", "value": 1}, {"year": 1791, "variable": "texts", "value": 228}, {"year": 1826, "variable": "texts", "value": 323}, {"year": 1837, "variable": "texts", "value": 344}, {"year": 1824, "variable": "texts", "value": 317}, {"year": 1819, "variable": "texts", "value": 304}, {"year": 1774, "variable": "texts", "value": 197}, {"year": 1813, "variable": "texts", "value": 289}, {"year": 1816, "variable": "texts", "value": 299}, {"year": 1786, "variable": "texts", "value": 210}, {"year": 1810, "variable": "texts", "value": 272}, {"year": 1832, "variable": "texts", "value": 339}, {"year": 1795, "variable": "texts", "value": 245}, {"year": 1767, "variable": "texts", "value": 189}, {"year": 1705, "variable": "texts", "value": 152}, {"year": 1664, "variable": "texts", "value": 99}, {"year": 1797, "variable": "texts", "value": 250}, {"year": 1716, "variable": "texts", "value": 158}, {"year": 1799, "variable": "texts", "value": 256}, {"year": 1798, "variable": "texts", "value": 254}, {"year": 1666, "variable": "texts", "value": 102}, {"year": 1807, "variable": "texts", "value": 266}, {"year": 1745, "variable": "texts", "value": 177}, {"year": 1793, "variable": "texts", "value": 236}, {"year": 1833, "variable": "texts", "value": 340}, {"year": 1726, "variable": "texts", "value": 167}, {"year": 1704, "variable": "texts", "value": 151}, {"year": 1700, "variable": "texts", "value": 146}, {"year": 1794, "variable": "texts", "value": 240}, {"year": 1773, "variable": "texts", "value": 196}, {"year": 1796, "variable": "texts", "value": 247}, {"year": 1841, "variable": "texts", "value": 349}, {"year": 1792, "variable": "texts", "value": 232}, {"year": 1668, "variable": "texts", "value": 109}, {"year": 1656, "variable": "texts", "value": 84}, {"year": 1825, "variable": "texts", "value": 320}, {"year": 1722, "variable": "texts", "value": 163}, {"year": 1788, "variable": "texts", "value": 215}, {"year": 1827, "variable": "texts", "value": 325}, {"year": 1725, "variable": "texts", "value": 166}, {"year": 1839, "variable": "texts", "value": 345}, {"year": 1706, "variable": "texts", "value": 153}, {"year": 1830, "variable": "texts", "value": 330}, {"year": 1710, "variable": "texts", "value": 154}, {"year": 1811, "variable": "texts", "value": 273}, {"year": 1814, "variable": "texts", "value": 292}, {"year": 1815, "variable": "texts", "value": 298}, {"year": 1822, "variable": "texts", "value": 308}, {"year": 1769, "variable": "texts", "value": 190}, {"year": 1688, "variable": "texts", "value": 129}, {"year": 1728, "variable": "texts", "value": 170}, {"year": 1685, "variable": "texts", "value": 122}, {"year": 1789, "variable": "texts", "value": 218}, {"year": 1752, "variable": "texts", "value": 182}, {"year": 1667, "variable": "texts", "value": 109}, {"year": 1651, "variable": "texts", "value": 72}, {"year": 1760, "variable": "texts", "value": 185}, {"year": 1800, "variable": "texts", "value": 257}, {"year": 1790, "variable": "texts", "value": 223}, {"year": 1834, "variable": "texts", "value": 341}, {"year": 1820, "variable": "texts", "value": 305}, {"year": 1707, "variable": "texts", "value": 153}, {"year": 1663, "variable": "texts", "value": 99}, {"year": 1756, "variable": "texts", "value": 184}, {"year": 1662, "variable": "texts", "value": 95}, {"year": 1659, "variable": "texts", "value": 88}, {"year": 1653, "variable": "texts", "value": 78}, {"year": 1812, "variable": "texts", "value": 286}, {"year": 1634, "variable": "texts", "value": 35}, {"year": 1611, "variable": "texts", "value": 22}, {"year": 1805, "variable": "texts", "value": 262}, {"year": 1690, "variable": "texts", "value": 133}, {"year": 1831, "variable": "texts", "value": 335}, {"year": 1691, "variable": "texts", "value": 135}, {"year": 1787, "variable": "texts", "value": 212}, {"year": 1713, "variable": "texts", "value": 157}, {"year": 1723, "variable": "texts", "value": 163}, {"year": 1781, "variable": "texts", "value": 201}, {"year": 1777, "variable": "texts", "value": 199}, {"year": 1750, "variable": "texts", "value": 181}, {"year": 1751, "variable": "texts", "value": 182}, {"year": 1582, "variable": "texts", "value": 14}, {"year": 1727, "variable": "texts", "value": 170}, {"year": 1829, "variable": "texts", "value": 328}, {"year": 1828, "variable": "texts", "value": 326}, {"year": 1548, "variable": "texts", "value": 7}, {"year": 1817, "variable": "texts", "value": 299}, {"year": 1801, "variable": "texts", "value": 258}, {"year": 1589, "variable": "texts", "value": 17}, {"year": 1617, "variable": "texts", "value": 26}, {"year": 1630, "variable": "texts", "value": 31}, {"year": 1640, "variable": "texts", "value": 39}, {"year": 1655, "variable": "texts", "value": 84}, {"year": 1671, "variable": "texts", "value": 110}, {"year": 1673, "variable": "texts", "value": 111}, {"year": 1678, "variable": "texts", "value": 115}, {"year": 1686, "variable": "texts", "value": 122}, {"year": 1694, "variable": "texts", "value": 139}, {"year": 1696, "variable": "texts", "value": 143}, {"year": 1714, "variable": "texts", "value": 157}, {"year": 1719, "variable": "texts", "value": 161}, {"year": 1734, "variable": "texts", "value": 171}, {"year": 1780, "variable": "texts", "value": 201}, {"year": 1784, "variable": "texts", "value": 204}, {"year": 1785, "variable": "texts", "value": 208}]}};
+          var embedOpt = {"mode": "vega-lite"};
+
+          function showError(el, error){
+              el.innerHTML = ('<div class="error" style="color:red;">'
+                              + '<p>JavaScript Error: ' + error.message + '</p>'
+                              + "<p>This usually means there's a typo in your chart specification. "
+                              + "See the javascript console for the full traceback.</p>"
+                              + '</div>');
+              throw error;
+          }
+          const el = document.getElementById('line');
+          vegaEmbed("#line", spec, embedOpt)
+            .catch(error => showError(el, error));
+        })(vegaEmbed);
+  </script>
+
+
+
+
+    <footer style="background-color:#000000d0; height:50px; margin-top:100px;">
+        <p style="font-size:1em; color:#ffffffe5; text-align:center; font-weight:bold; margin-top:0px;"> This work was supported in part by the Khoury College of Computer Sciences at Northeastern University.</p>
+    </footer>
+   
+    
+
+   
+  
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $(function () {
+            $(document).scroll(function () {
+                var $nav = $("#mainNavbar");
+                $nav.toggleClass("scrolled", $(this).scrollTop() > $nav.height());
+            });
+        });
+    </script>
+</body>
+
+</html>

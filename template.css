@@ -1,0 +1,120 @@
+/* Styling the Body and text fonts*/
+body {
+    background:white;
+    font-family: "Nunito", sans-serif;
+    
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+/* Styling the Navbar*/
+#mainNavbar {
+    font-size: 1.5rem;
+    font-weight: 100;    
+}
+
+#mainNavbar .nav-link {
+    color:  #000000;
+    font-size:1.3rem;
+    font-family: "Nunito", sans-serif;
+    text-align: center;
+    padding: 10px 15px;
+}
+
+#mainNavbar.navbar.scrolled .nav-link{
+    color:white;
+}
+
+#mainNavbar .nav-link:hover {
+    font-size:22px;
+    font-weight:bold;
+
+}
+
+#mainNavbar .navbar-brand {
+    color: #373A36;
+    font-size: 1.5rem;
+}
+
+.navbar.scrolled {
+    background: #000000d5;
+    transition: background 300ms;
+
+}
+
+.chart-description {
+    text-align: center;
+    width:50%;
+    font-size: 18px;
+    margin: auto;
+    justify-content: center;
+    display: flex;
+}
+
+/* Adjusting the anchors to each sections so that the header is not hidden by the navbar. Try commenting the code below this specific comment to see how the section
+header gets hidden by the navbar*/
+
+#motivation, #data, #task, #analysis, #design, #visualization {
+    scroll-margin-top: 100px;
+  }
+
+
+
+/*Copied from test.css example*/
+  #steam {
+    margin: auto;
+    width: 50%;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  #grace-bar {
+    margin: auto;
+    width: 70%;
+    background-color: rgb(255, 254, 254);
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+#grace-references {
+    margin: auto;
+    width: 70%;
+    background-color: rgb(255, 254, 254);
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#vis {
+    margin: auto;
+    width: 70%;
+    background-color: rgb(255, 254, 254);
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.scatter {
+    height: 400px;
+    border: none;
+    justify-content: center;
+}
+
+.wrap-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+ 
