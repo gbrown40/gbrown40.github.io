@@ -116,5 +116,14 @@ header gets hidden by the navbar*/
     flex-wrap: wrap;
 }
 
+.sketch {
+    width: 300px;
+    height: auto;
+    padding: 20px;
+}
+
+.row {
+    text-align: left;
+}
 
  
